@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>Weerkaart | weerapp</title>
+    <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/opmaak.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<script type="text/javascript" src="../js/instruct_buienradarLibrary.js"></script>-->
+    <script type="text/javascript" src="../js/customLib.js"></script>
+    <script type="text/javascript" src="../js/script.js" defer></script>
+    <script type="text/javascript" defer>
+    function showWeatherInfo() {
+      //regenkaart oproepen
+      let regenKaart = document.getElementsByClassName("regenKaart")[0];
+      regenKaart.src = buienradar_map();
+    }
+    </script>
+  </head>
+
+  <body class="vandaag" onload="loadBuienradarData(); getLocation(); fixWindEenheid(); fixTemperatuurEenheid(); fixNeerslagEenheid();">
+    <div class="notSup">
+      <p>Your browser is too small to support this web-app</p>
+    </div>
+    <div id="wrapper">
+      <div class="menu">
+        <img onclick="closeSettings()" class="clsBut" src="../img/default/close.png" alt="Close">
+
+        <table class="setSet">
+          <tr>
+            <td class="set">Temperatuur:</td>
+            <td class="empty"></td>
+            <td><button onclick="temperatuurVeranderenTeurg()" class="setBut" type="button"><</button></td>
+            <td class="tempSet"></td>
+            <td><button onclick="temperatuurVeranderen()" class="setBut" type="button">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Windkracht:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeWindEenheidTerug()" class="setBut" type="button"><</button></td>
+            <td class="windSet"></td>
+            <td><button class="setBut" type="button" onclick="changeWindEenheid()">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Neerslag:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button"><</button></td>
+            <td class="neerSet"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button">></button><td>
+          </tr>
+        </table>
+      </div>
+
+      <nav>
+        <a href="home.html"><i class="fa fa-home"></i>Home</a>
+        <a href="weekoverzicht.html">Weekoverzicht</a>
+        <a href="advies.html">Weeradvies</a>
+        <a href="kaart.html" class="active">Weerkaart</a>
+        <button onclick="openSettings()"><img src="../img/default/setting.png" alt="Instellingen"></button>
+      </nav>
+
+      <div class="kaartTab">
+        <div class="kaartHeader">
+          <button type="button" onclick="tab1()" class="tempKaartBut">Temperatuur</button>
+          <button type="button" onclick="tab2()" class="regenKaartBut passiefTab">Regenval</button>
+        </div>
+        <div class="KaartTab1">
+          <img src="../img/default/kaartNederland.png" alt="Temperaturen door Nederland">
+        </div>
+        <div class="KaartTab2">
+          <iframe scrolling="no" class="regenKaart" src=""></iframe>
+        </div>
+      </div>
+
+      <div class="fullScreenRegenKaart">
+        <img onclick="fullScreenRegenKaartCls()" class="clsBut" src="../img/default/close.png" alt="Close">
+        <div class="outerRegenKaart">
+          <iframe scrolling="no" class="regenKaart" src=""></iframe>
+          <div class="cover"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

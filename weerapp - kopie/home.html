@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | weerapp</title>
+    <link rel="stylesheet" type="text/css" href="../css/opmaak.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<script type="text/javascript" src="../js/instruct_buienradarLibrary.js"></script>-->
+    <script type="text/javascript" src="../js/customLib.js"></script>
+    <script type="text/javascript" src="../js/script.js" defer></script>
+    <script type="text/javascript" defer>
+    function showWeatherInfo() {
+      //home uitgelicht weerinformatie
+      let pathImg = "../img/weericons/";
+      document.getElementsByClassName("afbeelding1")[0].src = pathImg + icoonNu();
+      console.log(icoonNu());
+
+      achtergrond();
+      document.getElementsByClassName("locatie")[0].innerHTML = currentLocation_stationRegio();
+      document.getElementsByClassName("temperatuur")[0].innerHTML = currentLocation_temperature();
+      document.getElementsByClassName("description")[0].innerHTML = forecast_weatherdescription();
+
+      //info weerinformatie
+      document.getElementsByClassName("plaats")[0].innerHTML = currentLocation_stationRegio();
+      document.getElementsByClassName("omschrijving")[0].innerHTML = currentLocation_stationDescription();
+      document.getElementsByClassName("windkracht")[0].innerHTML = currentLocation_stationWindSpeed();
+      document.getElementsByClassName("tempTemp")[0].innerHTML = currentLocation_temperature();
+      document.getElementsByClassName("gevoelTemp")[0].innerHTML = currentLocation_stationFeelTemperature();
+      document.getElementsByClassName("regenval24")[0].innerHTML = currentLocation_stationRainFallLast24Hour();
+
+      //windrichting
+      let windrichting = currentLocation_stationWindDirectionDegree();
+      windrichting = windrichting - 90;
+      document.getElementsByClassName("windpijl")[0].style.transform = "rotate("+windrichting+"deg)";
+    }
+    </script>
+  </head>
+
+  <body onload="loadBuienradarData(); getLocation(); fixWindEenheid(); fixTemperatuurEenheid(); fixNeerslagEenheid();">
+    <div class="notSup">
+      <p>Your browser is too small to support this web-app</p>
+    </div>
+    <div id="wrapper">
+      <div class="menu">
+        <img onclick="closeSettings()" class="clsBut" src="../img/default/close.png" alt="Close">
+
+        <table class="setSet">
+          <tr>
+            <td class="set">Temperatuur:</td>
+            <td class="empty"></td>
+            <td><button onclick="temperatuurVeranderenTeurg()" class="setBut" type="button"><</button></td>
+            <td class="tempSet"></td>
+            <td><button onclick="temperatuurVeranderen()" class="setBut" type="button">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Windkracht:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeWindEenheidTerug()" class="setBut" type="button"><</button></td>
+            <td class="windSet"></td>
+            <td><button class="setBut" type="button" onclick="changeWindEenheid()">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Neerslag:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button"><</button></td>
+            <td class="neerSet"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button">></button><td>
+          </tr>
+        </table>
+      </div>
+
+      <nav>
+        <a href="home.html" class="active"><i class="fa fa-home"></i>Home</a>
+        <a href="weekoverzicht.html">Weekoverzicht</a>
+        <a href="advies.html">Weeradvies</a>
+        <a href="kaart.html">Weerkaart</a>
+        <button onclick="openSettings()"><img src="../img/default/setting.png" alt="Instellingen"></button>
+      </nav>
+
+      <div class="content">
+        <div class="afbeelding">
+          <img class="afbeelding1" src="" alt="icon">
+        </div>
+        <div class="temperatuur">
+        </div>
+        <div class="locatie">
+        </div>
+        <div class="description">
+        </div>
+        <div class="warning">
+          <p>LET OP!: U huidige locatie heeft een <b>wind</b>station geen <b>weer</b>station
+             hierdor zijn sommige gegevens landelijk genomen.</p>
+        </div>
+        <div class="moreInfo">
+          <button type="button" onclick="openInfo()">Meer info..</button>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="infoWrapper">
+          <header><button type="button" onclick="closeInfo()">&#x2716;</button></header>
+          <div class="gegevens">
+            <table>
+              <tr>
+                <td class="gegOpmaak">Gegevens</td>
+              </tr>
+              <tr>
+                <td>Plaats</td>
+                <td class="empty2"></td>
+                <td class="plaats"></td>
+              </tr>
+              <tr>
+                <td>Omschrijving</td>
+                <td class="empty2"></td>
+                <td class="omschrijving"></td>
+              </tr>
+              <tr>
+                <td>Temperatuur</td>
+                <td class="empty2"></td>
+                <td class="tempTemp"></td>
+              </tr>
+              <tr>
+                <td>Gevoelstemperatuur</td>
+                <td class="empty2"></td>
+                <td class="gevoelTemp"></td>
+              </tr>
+              <tr>
+                <td>Windsnelheid</td>
+                <td class="empty2"></td>
+                <td class="windkracht"></td>
+              </tr>
+              <tr>
+                <td>Regenval afgelopen 24 uur</td>
+                <td class="empty2"></td>
+                <td class="regenval24"></td>
+              </tr>
+            </table>
+            <div class="windrichting">
+              <img src="../img/default/pijl.png" alt="windpijl" class="windpijl">
+              <p>Windrichting</p>
+            </div>
+            <div class="voorspellingOut">
+              <h5>Voorspelling</h5>
+              <p class="voorspelling">Voorlopig komt er nog geen eind aan het wisselvallige en
+                relatief koude weer. Met name vanmiddag is er even een adempauze.
+                Tegen het eind van volgende week lijken we wel naar een wat warmer en droger weerbeeld te gaan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="credits">
+        <p>Deze informatie komt van <a href="https://www.buienradar.nl">RTL buienradar</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>

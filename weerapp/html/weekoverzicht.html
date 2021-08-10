@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>Weekoverzicht | weerapp</title>
+    <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nick de Boer, Trishul Ramgoelam">
+    <meta name="keywords" content="buienradar, Buienradar, Weerapp, weerapp, weer, Weer, voorspelling, Voorspelling, Weersverwachting, Weersverwachting">
+    <meta name="description" content="Een webapp voor het weer in Nederland.">
+    <link rel="stylesheet" type="text/css" href="../css/opmaak.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<script type="text/javascript" src="../js/instruct_buienradarLibrary.js"></script>-->
+    <script type="text/javascript" src="../js/customLib.js"></script>
+    <script type="text/javascript" src="../js/script.js" defer></script>
+    <script type="text/javascript" defer>
+    function showWeatherInfo() {
+      //datum 1-5
+      document.getElementsByClassName("datum1")[0].innerHTML = date_showName(forecast_date(1)) + " " + date_showDay(forecast_date(1)) + " " + date_showMonth(forecast_date(1));
+      document.getElementsByClassName("datum2")[0].innerHTML = date_showName(forecast_date(2)) + " " + date_showDay(forecast_date(2)) + " " + date_showMonth(forecast_date(2));
+      document.getElementsByClassName("datum3")[0].innerHTML = date_showName(forecast_date(3)) + " " + date_showDay(forecast_date(3)) + " " + date_showMonth(forecast_date(3));
+      document.getElementsByClassName("datum4")[0].innerHTML = date_showName(forecast_date(4)) + " " + date_showDay(forecast_date(4)) + " " + date_showMonth(forecast_date(4));
+      document.getElementsByClassName("datum5")[0].innerHTML = date_showName(forecast_date(5)) + " " + date_showDay(forecast_date(5)) + " " + date_showMonth(forecast_date(5));
+
+      //min en max temperatuur
+      document.getElementsByClassName("minTemp")[0].innerHTML = forecast_minTemperature(1);
+		  document.getElementsByClassName("maxTemp")[0].innerHTML = forecast_maxTemperature(1);
+      document.getElementsByClassName("minTemp")[1].innerHTML = forecast_minTemperature(2);
+		  document.getElementsByClassName("maxTemp")[1].innerHTML = forecast_maxTemperature(2);
+      document.getElementsByClassName("minTemp")[2].innerHTML = forecast_minTemperature(3);
+		  document.getElementsByClassName("maxTemp")[2].innerHTML = forecast_maxTemperature(3);
+      document.getElementsByClassName("minTemp")[3].innerHTML = forecast_minTemperature(4);
+		  document.getElementsByClassName("maxTemp")[3].innerHTML = forecast_maxTemperature(4);
+      document.getElementsByClassName("minTemp")[4].innerHTML = forecast_minTemperature(5);
+		  document.getElementsByClassName("maxTemp")[4].innerHTML = forecast_maxTemperature(5);
+
+      //weericons
+      let path = "../img/weericons/";
+      console.log(document.getElementsByClassName("woIcon")[0].innerHTML = path + icoon(1));
+      document.getElementsByClassName("woIcon")[1].src = path + icoon(2);
+      document.getElementsByClassName("woIcon")[2].src = path + icoon(3);
+      document.getElementsByClassName("woIcon")[3].src = path + icoon(4);
+      document.getElementsByClassName("woIcon")[4].src = path + icoon(5);
+    }
+    </script>
+  </head>
+
+  <body class="vandaag" onload="loadBuienradarData(); getLocation(); fixWindEenheid(); fixTemperatuurEenheid(); fixNeerslagEenheid();">
+    <div class="notSup">
+      <p>Your browser is too small to support this web-app</p>
+    </div>
+    <div id="wrapper">
+      <div class="menu">
+        <img onclick="closeSettings()" class="clsBut" src="../img/default/close.png" alt="Close">
+
+        <table class="setSet">
+          <tr>
+            <td class="set">Temperatuur:</td>
+            <td class="empty"></td>
+            <td><button onclick="temperatuurVeranderenTeurg()" class="setBut" type="button"><</button></td>
+            <td class="tempSet"></td>
+            <td><button onclick="temperatuurVeranderen()" class="setBut" type="button">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Windkracht:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeWindEenheidTerug()" class="setBut" type="button"><</button></td>
+            <td class="windSet"></td>
+            <td><button class="setBut" type="button" onclick="changeWindEenheid()">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Neerslag:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button"><</button></td>
+            <td class="neerSet"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button">></button><td>
+          </tr>
+        </table>
+      </div>
+
+      <nav>
+        <a href="home.html"><i class="fa fa-home"></i>Home</a>
+        <a href="weekoverzicht.html" class="active">Weekoverzicht</a>
+        <a href="advies.html">Weeradvies</a>
+        <a href="kaart.html">Weerkaart</a>
+        <button onclick="openSettings()"><img src="../img/default/setting.png" alt="Instellingen"></button>
+      </nav>
+
+      <table cellpadding="0" cellspacing="0" class="weekoverzicht">
+        <tr class="big">
+          <td class="leftTopBorder">Dag</td>
+          <td class="padTd centerTxt bottomAndRight">Minium temperatuur</td>
+          <td class="padTd centerTxt bottomAndRight">Maxium temperatuur</td>
+          <td style="text-align: right;"class="rightTopBorder">Icon</td>
+        </tr>
+        <tr>
+          <td class="datum1 bottomAndRight"></td>
+          <td class="minTemp centerTxt bottomAndRight"></td>
+          <td class="maxTemp centerTxt bottomAndRight"></td>
+          <td class="bottomAndTop"><img class="woIcon" src="../img/weericons/zonwolk.png" alt="icon"></td>
+        </tr>
+        <tr>
+          <td class="datum2 bottomAndRight">dag 2</td>
+          <td class="minTemp centerTxt bottomAndRight"></td>
+          <td class="maxTemp centerTxt bottomAndRight"></td>
+          <td class="bottomAndTop"><img class="woIcon" src="" alt="icon"></td>
+        </tr>
+        <tr>
+          <td class="datum3 bottomAndRight">dag 3</td>
+          <td class="minTemp centerTxt bottomAndRight"></td>
+          <td class="maxTemp centerTxt bottomAndRight"></td>
+          <td class="bottomAndTop"><img class="woIcon" src="" alt="icon"></td>
+        </tr>
+        <tr>
+          <td class="datum4 bottomAndRight">dag 4</td>
+          <td class="minTemp centerTxt bottomAndRight"></td>
+          <td class="maxTemp centerTxt bottomAndRight"></td>
+          <td class="bottomAndTop"><img class="woIcon" src="" alt="icon"></td>
+        </tr>
+        <tr>
+          <td class="datum5 leftBottomBorder topAndRight">dag 5</td>
+          <td class="minTemp centerTxt topAndRight"></td>
+          <td class="maxTemp centerTxt topAndRight"></td>
+          <td class="rightBottomBorder"><img class="woIcon" src="" alt="icon"></td>
+        </tr>
+      </table>
+
+      <div class="credits">
+        <p>Deze informatie komt van <a href="https://www.buienradar.nl">RTL buienradar</a>.</p>
+      </div>
+  </body>
+</html>

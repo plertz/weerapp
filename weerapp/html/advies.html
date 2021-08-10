@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>Advies | weerapp</title>
+    <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nick de Boer, Trishul Ramgoelam">
+    <meta name="keywords" content="buienradar, Buienradar, Weerapp, weerapp, weer, Weer, voorspelling, Voorspelling, Weersverwachting, Weersverwachting">
+    <meta name="description" content="Een webapp voor het weer in Nederland.">
+    <link rel="stylesheet" type="text/css" href="../css/opmaak.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<script type="text/javascript" src="../js/instruct_buienradarLibrary.js"></script>-->
+    <script type="text/javascript" src="../js/customLib.js"></script>
+    <script type="text/javascript" src="../js/script.js" defer></script>
+    <script type="text/javascript" defer>
+    function showWeatherInfo() {}
+    </script>
+  </head>
+
+  <body class="vandaag" onload="loadBuienradarData(); getLocation(); fixWindEenheid(); fixTemperatuurEenheid(); fixNeerslagEenheid(); terrasweer(); wandelWeer(); fietsWeer(); strandWeer();">
+    <div class="notSup">
+      <p>Your browser is too small to support this web-app</p>
+    </div>
+    <div id="wrapper">
+      <div class="menu">
+        <img onclick="closeSettings()" class="clsBut" src="../img/default/close.png" alt="Close">
+
+        <table class="setSet">
+          <tr>
+            <td class="set">Temperatuur:</td>
+            <td class="empty"></td>
+            <td><button onclick="temperatuurVeranderenTeurg()" class="setBut" type="button"><</button></td>
+            <td class="tempSet"></td>
+            <td><button onclick="temperatuurVeranderen()" class="setBut" type="button">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Windkracht:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeWindEenheidTerug()" class="setBut" type="button"><</button></td>
+            <td class="windSet"></td>
+            <td><button class="setBut" type="button" onclick="changeWindEenheid()">></button></td>
+          </tr>
+
+          <tr>
+            <td class="set">Neerslag:</td>
+            <td class="empty"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button"><</button></td>
+            <td class="neerSet"></td>
+            <td><button onclick="changeNeerslagEenheid()" class="setBut" type="button">></button><td>
+          </tr>
+        </table>
+      </div>
+
+      <nav>
+        <a href="home.html"><i class="fa fa-home"></i>Home</a>
+        <a href="weekoverzicht.html">Weekoverzicht</a>
+        <a href="advies.html" class="active">Weeradvies</a>
+        <a href="kaart.html">Weerkaart</a>
+        <button onclick="openSettings()"><img src="../img/default/setting.png" alt="Instellingen"></button>
+      </nav>
+
+      <div class="advies">
+        <header class="adviesHeader">
+          <h1>Advies</h1>
+        </header>
+        <div class="advies-content">
+          <table>
+            <tr>
+              <td class="titleAdvies">Terras</td>
+              <td class="emptyAdvies-col"></td>
+              <td class="green"><p class="terrasGreen"></p></td>
+              <td class="yellow"><p class="terrasYellow"></p></td>
+              <td class="red"><p class="terrasRed"></p></td>
+            </tr>
+            <tr class="emptyAdvies"></tr>
+            <tr>
+              <td class="titleAdvies">Met de hond wandelen</td>
+              <td class="emptyAdvies-col"></td>
+              <td class="green"><p class="wandelGreen"></td>
+              <td class="yellow"><p class="wandelYellow"></td>
+              <td class="red"><p class="wandelRed"></p></td>
+            </tr>
+            <tr class="emptyAdvies"></tr>
+            <tr>
+              <td class="titleAdvies">Fietsen</td>
+              <td class="emptyAdvies-col"></td>
+              <td class="green"><p class="fietsGreen"></p></td>
+              <td class="yellow"><p class="fietsYellow"></p></td>
+              <td class="red"><p class="fietsRed"></p></td>
+            </tr>
+            <tr class="emptyAdvies"></tr>
+            <tr>
+              <td class="titleAdvies">Naar het strand</td>
+              <td class="emptyAdvies-col"></td>
+              <td class="green"><p class="strandGreen"></p></td>
+              <td class="yellow"><p class="strandYellow"></p></td>
+              <td class="red"><p class="strandRed"></p></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="credits">
+        <p>Deze informatie komt van <a href="https://www.buienradar.nl">RTL buienradar</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>

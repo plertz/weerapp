@@ -1,0 +1,559 @@
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html, body, #wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    overflow: hidden;
+    background-color: #c2d6d6;
+}
+
+nav{
+  background-color: white;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0px 10px 50px;
+  box-shadow: 0 4px 2px -2px gray;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+nav a{
+    padding: 20px 20px;
+    margin: 0px 30px;
+    display: inline-block;
+    font-size: 18pt;
+    color: black;
+    text-decoration: none;
+}
+
+.active{
+  border-bottom: 5px;
+  border-color: black;
+  border-style: solid;
+}
+
+nav a:hover{
+  border-bottom: 5px;
+  border-color: black;
+  border-style: solid;
+}
+
+a:active{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+nav button{
+  background-color: inherit;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(-50%, -50%);
+}
+
+nav button:hover{
+  cursor: pointer;
+}
+
+nav button img{
+  height: inherit;
+  width: inherit;
+}
+
+.content{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  text-align: center;
+}
+
+.afbeelding{
+  width: 150px;
+  margin: auto;
+}
+
+.afbeelding img{
+  width: inherit;
+}
+
+.locatie{
+  text-align: center;
+  font-size: 18pt;
+}
+
+.temperatuur{
+  text-align: center;
+  font-size: 16pt;
+  font-weight: 900;
+  font-size: 28pt;
+  margin-top: 5px;
+}
+
+.description{
+  margin-top: 5px;
+  text-align: center;
+}
+
+.warning{
+  display: none;
+}
+
+.moreInfo{
+  text-align: center;
+
+}
+
+.moreInfo button{
+  background: Transparent no-repeat;
+  color: blue;
+  text-decoration: underline;
+}
+
+.moreInfo button:hover{
+  color: purple;
+  cursor: pointer;
+}
+
+.menu{
+     position: fixed;
+     z-index: 4;
+     top: 0;
+     right: 0;
+     width: 0;
+     height: 100%;
+     transition: 0.5s;
+     background-color: rgb(0,0,0);
+     background-color: rgba(0,0,0, 0.9);
+     overflow: hidden;
+}
+
+.clsBut{
+  position: absolute;
+  display: block;
+  right: 45px;
+  top: 45px;
+  color: white;
+  width: 45px;
+}
+
+.clsBut:hover{
+  cursor: pointer;
+}
+
+.notSup{
+  display: none;
+}
+
+.empty{
+  width: 40px;
+}
+
+.setSet{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32pt;
+}
+
+.tempSet, .neerSet, .windSet{
+  color: white;
+  text-align: center;
+  cursor: default;
+  width: 210px;
+  height: 60px;
+  display: block;
+}
+
+.set{
+  color: white;
+  font-weight: bold;
+  cursor: default;
+}
+
+.setBut{
+  color: white;
+  background: Transparent no-repeat;
+  font-size: 32pt;
+  padding: 5px 10px;
+  border-radius: 8px;
+
+}
+
+.setBut:hover{
+  cursor: pointer;
+  background-color: black;
+}
+
+.credits{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.info{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: none;
+}
+
+.infoWrapper{
+  width: 700px;
+  height: 500px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.infoWrapper header{
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid #85898f;
+  position: relative;
+}
+
+.infoWrapper header button{
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translate(0, -50%);
+  font-size: 32pt;
+  font-weight: 900;
+  background: Transparent no-repeat;
+}
+
+.infoWrapper header button:hover{
+  cursor: pointer;
+}
+
+.gegevens{
+  width: 100%;
+  height: 85%;
+  position: relative;
+}
+
+.gegevens table{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 15pt;
+}
+
+.gegevens td{
+  height: 20px;
+}
+
+.empty2{
+  width: 40px;
+}
+
+.gegOpmaak{
+  font-weight: bold;
+}
+
+.windrichting{
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 10%;
+}
+
+.windrichting img{
+  display: block;
+  width: 100%;
+}
+
+.windrichting p{
+  margin-top: 10px;
+}
+
+.voorspellingOut{
+  position: absolute;
+  bottom: 60px;
+  left: 20px;
+  width: 70%;
+}
+
+.voorspellingOut h5{
+  margin-bottom: 10px;
+  font-size: 18pt;
+}
+
+.voorspellingOut p{
+  font-size: 15pt;
+}
+
+.kaartTab{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:  500px;
+  height: 550px;
+}
+
+.kaartTab .kaartHeader{
+  width: 100%;
+  height: 10%;
+  background-color: Transparent no-repeat;
+}
+
+.kaartTab .kaartHeader button{
+  background-color: #EEEEEE;
+  padding: 0px 20px;
+  margin-right: 3px;
+  display: block;
+  float: left;
+  font-size: 14pt;
+  font-weight: bold;
+  height: 100%;
+  border: 1px solid black;
+  border-bottom: 0px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.kaartTab .kaartHeader button:hover{
+  background-color: #EEEEEE;
+  cursor: pointer;
+}
+
+.passiefTab{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.KaartTab1, .kaartTab2{
+  width: 100%;
+  height: 90%;
+  background-color: #EEEEEE;
+  border: 1px solid black;
+}
+
+.KaartTab1 img{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.KaartTab2{
+  display: none;
+  background-color: #EEEEEE;
+  height: 90%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.regenKaart{
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.outerRegenKaart{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+}
+
+.fullScreenRegenKaart{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.9);
+}
+
+.cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: none;
+}
+
+@media screen and (max-width: 1111px) {
+  nav button{
+    right: -5px;
+  }
+}
+
+@media screen and (max-width: 976px) {
+  nav{
+    padding-left: 30px;
+  }
+
+  nav a{
+      font-size: 14pt;
+  }
+
+  nav button{
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  nav {
+    padding-left: 10px;
+  }
+
+  nav a{
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 776px) {
+  nav{
+    display: inline-block;
+    box-shadow: none;
+    padding-left: 30px;
+  }
+
+  nav a{
+    display: block;
+    margin: auto;
+  }
+
+  nav a:hover{
+    border: 0;
+    box-shadow: none;
+    font-weight: bold;
+  }
+
+  .active{
+    border: 0;
+    font-weight: bold;
+  }
+
+  nav button{
+    top: 0;
+    right: 0;
+    transform: translate(0, 0);
+    right: 15px;
+    top: 10px;
+  }
+
+  .infoWrapper{
+    width: 400px;
+  }
+
+  .gegevens table{
+    top: 115px;
+    font-size: 11pt;
+  }
+
+  .gegOpmaak{
+    font-weight: bold;
+  }
+
+  .windrichting{
+    left: 20px;
+  }
+
+  .windrichting img{
+    display: block;
+    width: 100%;
+  }
+
+  .voorspellingOut{
+    bottom: 20px;
+  }
+
+  .voorspellingOut h5{
+    font-size: 14pt;
+  }
+
+  .voorspellingOut p{
+    font-size: 11pt;
+  }
+}
+
+@media screen and (max-width: 623px){
+  .setSet{
+    font-size: 14pt;
+  }
+  .setBut{
+    font-size: 14pt;
+  }
+
+  .tempSet, .neerSet, .windSet{
+    display: block;
+    width: 115px;
+    height: 0px;
+  }
+}
+
+@media screen and (max-width: 419px) {
+  .infoWrapper{
+    width: 250px;
+    height: 550px;
+  }
+
+  .gegevens table{
+    top: 90px;
+    font-size: 8pt;
+  }
+
+  .gegevens td{
+    height: 10px;
+  }
+
+  .voorspellingOut h5{
+    font-size: 12pt;
+  }
+
+  .voorspellingOut p{
+    font-size: 8pt;
+  }
+
+  .windrichting{
+    font-size: 8pt;
+  }
+  .setSet{
+    font-size: 9pt;
+  }
+  .setBut{
+    font-size: 9pt;
+  }
+  .tempSet, .neerSet, .windSet{
+    display: block;
+    width: 70px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 250px) {
+#wrapper{
+  display: none;
+}
+
+body{
+  background: none;
+}
+
+.notSup{
+  display: block;
+}
+}
